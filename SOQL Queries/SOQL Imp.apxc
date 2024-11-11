@@ -1,0 +1,68 @@
+public static void myMethod(String str)
+{
+  //Comparing Static Value
+  List<Contact>conList = [Select firstName from Contact where firstName = 'John'];
+
+  //Comparing Dynamic Value
+  List<Contact>conList = [Select firstName from Contact where firstName = :str];
+}
+
+
+------------------------------SOQL Return Types------------------------------------------------
+1.List<sObject>
+2.sObject
+3.Integer
+4.Aggregate Result
+
+
+-----------------------------SOQL Aggregate Functions------------------------------------------
+1.Sum
+2.Max
+3.Min
+4.Count
+5.Avg
+6.Count Distinct (Count_Distinct)
+
+// To access the value from AggregateResult Object
+Integer i2 = (Integer)ar7.get('expro');
+
+
+-----------------------------SOQL Keywords-------------------------------------------------------
+1.IN
+* Map cannot be used with IN Keyword because it is not an iterable collection
+2.NOT
+3.LIKE
+  -> Wildcards
+  a. % => 0 or multiple characters
+  b. _ => Single character
+4.AND / OR
+5.ORDER BY
+  -> Order by Amount ASC
+  -> Order by Amount DESC
+  -> Order by Amount NULLS FIRST
+  -> Order by Amount NULLS LAST
+6.GROUPBY
+-> We can use below mentioned aggregate functions with GROUP BY, like:
+  a. AVG()
+  b. COUNT()
+  c. MAX()
+  d. MIN()
+  e. SUM()
+  f. COUNT_DISTINCT()
+7.LIMIT
+8.ORDER BY
+9.ALL ROWS
+
+
+---------------------------------------------------------DATE LITERALS----------------------------------------------
+List<Account>accList;
+//yesterday
+accList = [Select Name from Account where createdDate = yesterday];
+
+//today
+accList = [Select Name from Account where createdDate = TODAY];
+
+//tomorrow
+accList = [Select Name from Account where createdDate = tomorrow];
+
+-> last_week, last_month
