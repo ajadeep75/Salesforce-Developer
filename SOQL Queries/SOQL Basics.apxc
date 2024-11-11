@@ -1,0 +1,18 @@
+// SOQL stands for Salesforce Object Query Language
+
+//Syntax is similar to SQL
+
+//Basic Syntax of SOQL
+SELECT {field API nameList} from {Object API Name}
+
+-> /*WHERE Clause*/
+Select Name from Account where NumberOfEmployees>50
+                        OR
+Select Name, NumberOfEmployees from Account where Type='Prospect' OR Rating='Hot'
+
+
+//SOQL in Apex
+List<Account>accList = [Select Name, NumberOfEmployees from Account];
+for(Account a : accList){
+	System.debug('Acc Name' + a.name + 'Acc No' + a.numberofEmployees);
+}
