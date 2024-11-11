@@ -1,0 +1,26 @@
+//Create an account sObject
+Account a1 = new Account();
+
+//***Assign field values to Account and Contact sObject***//
+
+	//Through Constructor
+	Account a2 = new Account(Name='Amazon', NumberOfEmployees=120);
+
+	//Using Dot Notation
+	a2.Name = 'Flipkart';
+	a2.NumberOfEmployees = 3000;
+
+
+
+//***Generic sObjects***//
+
+sObject s1 = new Account(Name='Amazon');
+sObject s2 = new Contact(lastName='Pearson');
+
+//***Set a Field***//
+s1.put('NumberOfEmployees',3000);
+
+//***Access a field value***//
+Object objValue = s1.get('NumberOfEmployees');
+
+System.debug((integer)objValue);
