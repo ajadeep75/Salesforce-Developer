@@ -1,0 +1,17 @@
+                    Account------------<---------Opportunity---------------< OpportunityLineItem
+
+1. Child to Parent Relationship
+//Standard Object
+//1st Option
+List<OpportunityLineItem>oppLineList = [Select Name, Quantity, Opportunity.Name, Opportunity.Amount,Opportunity.Account.Name, Opportunity.Account.NumberOfEmployees from OpportunityLineItem];
+//2nd Option
+List<Opportunity>opList = [Select Name, Account, Account.Name, Account.NumberOfEmployees,(Select Name, Quantity from OpportunityLineItem) from Opportunity];
+
+//Custom Object same as Standard Object fields are appended with __r and object is appended with __c.
+
+-> In SOQL, you can traverse up to a maximum of five levels when querying data from child object to parent.
+
+
+2. Parent to Child Relationship
+* It is not possible
+Note: A subquery cannot have a subquery inside it.
