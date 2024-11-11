@@ -1,0 +1,23 @@
+String s = 'Select Name from Account';
+List<sObject>accList = Database.query(s);
+
+//Creating the query string dynamically
+String qr = 'Select ID';
+String []fieldlist = new List<String>();
+fieldlist.add('Name');
+fieldlist.add('NumberOfEmployees');
+fieldlist.add('Phone');
+
+String objName = 'Account';
+for(String f : fieldList){
+  qr += ',' +f;
+} 
+
+//qr = Select ID, Name, NumberOfEmployees, Phone
+
+qr += 'from' + objName
+
+//qr = Select ID, Name, NumberOfEmployees, Phone from Account
+
+String s = String.escapeSingleQuotes(qr);
+List<sObject>list2 = Database.query(s);
