@@ -1,0 +1,36 @@
+//****Map Initialization*****
+Map<Datatype_key,Datatype_value>mmap = new Map<Datatype_key,Datatype_value>();
+
+//Creating and initializing a map
+Map<Integer,String>mmap = New Map<Integer,String>();
+
+//Adding values to map
+mmap.put(11,'Jack');
+mmap.put(21,'John');
+mmap.put(33,'Ron');
+
+System.debug(mmap)                                 //{11=>Jack,21=>John,31=>Ron}
+
+mmap.put(11,'Joy');                                //Will override the value on key 11
+
+
+//Initializing and assigning
+Map<Integer,String>m1 = new Map<Integer,String>{1=>'Dustin',2=>'Will',3=>'Lucas'};
+
+
+//Methods of Maps
+mMap.putAll(m1);
+System.debug(mmap.get(1));                         //Dustin
+List<String>l = new List<String>();
+l = mMap.values();
+System.debug(l);                                   //{Joy,John,Ron,Dustin,Will,Lucas}
+
+Map<Integer,String>o = new Map<Integer,String>();
+o = mMap.clone();
+
+System.debug(mMap.keySet());                       //{1,2,3,11,21,33}
+System.debug(mMap.containskey(3));                 //true
+System.debug(mMap.isEmpty());                      //false
+System.debug(mMap.size());                         //6
+mMap.remove(2);                                    //removes element at key 2
+mMap.clear();
