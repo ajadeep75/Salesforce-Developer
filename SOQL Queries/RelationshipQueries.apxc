@@ -1,0 +1,24 @@
+-> There are 2 types of relationship queries:
+  1. Child to Parent Relationship Queries
+  2. Parent to Child Relationship Queries
+
+
+1. Child to Parent Relationship Queries
+//Standard Object
+List<Contact>conList = [Select firstName, lastName, Account.Name, Account.NoOfEmployees from Contact];
+//Here Account is the parent object's reference which is realtionship field's name on child object.
+
+//Custom Object
+List<Rating__c>ratList = [Select Name, Rating_for__c, Rating_Out_of_10__c, Student__r.Name, Student__r.Student_Email__c from Rating__c];
+//Here Student__r is the parent object's reference which is realtionship field's name on child object__r.
+
+
+2. Parent to Child Relationship Queries
+//Standard Object
+List<Account>accList = [Select Name, NumberOfEmployees,(Select lastName, Phone from Contacts) from Account];
+//Here Contacts is the child relationship name & (Select lastName, Phone from Contacts) is a subquery.
+
+//Custom Object
+List<Student__c>sList = [Select Name, Student_Email__c, Student_Name__c,(Select Name, Rating_for__c, Rating_out_of_10__c from Ratings__r) from Student__c];
+//Here Ratings is the child relationship name which needs to appended with __r in case of a custom relationship 
+& (Select Name, Rating_for__c, Rating_out_of_10__c from Ratings__r) is a subquery.
