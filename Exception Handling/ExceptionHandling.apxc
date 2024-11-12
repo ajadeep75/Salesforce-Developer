@@ -1,0 +1,17 @@
+try
+{
+	if(i==0){
+		integer a;
+		integer b = a*5;
+	}
+	else{
+		Account acc = new Account();
+		insert acc;
+	}
+}
+catch(DMLException d){
+	System.debug('I execute when there is a DML Exception in try block');
+}
+catch(Exception e){
+	System.debug('I execute when there is any other exception except DML Exception');
+}
