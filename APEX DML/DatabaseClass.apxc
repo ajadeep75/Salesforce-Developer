@@ -1,0 +1,20 @@
+1. Empty Recycle bin
+
+List<Account>accList = [Select ID from Account where isDeleted = true ALL ROWS];
+Database.emptyRecycleBin(accList);
+
+
+2. Count Query
+* In Dynamic SOQL, we cannot use Database.query for count aggregate function. So, we use Database.countQuery
+Integer i1 = Database.countQuery('Select count() from Account');
+System.debug(i1);
+
+
+3. Lead Conversion
+Lead l = [Select name from lead where name like 'Dee%' limit 1];
+Database.leadConvert lc = new Database.leadConvert();
+lc.setLead(l.id);
+System.debug('ID of record inserted is: ' + l.id);
+lc.convertedStatus = 'Closed-converted';
+lc.ownerId = '0056F00000AXAKS'                // any user id
+Database.leadConvertResult lcr = Database.convertLead(lc);
