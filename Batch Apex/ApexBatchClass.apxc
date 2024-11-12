@@ -1,0 +1,47 @@
+global class LeadUpdateBatch implements Database.Batchable<sObject>
+{
+	//START
+	//Collects the records or objects to pass to the interface method
+	//This is the first method which is called when we execute batch apex
+	//It returns a Database.QueryLocator object that contains the records passed to the job
+
+	global Database.QueryLocator start(Database.BatchableContext bc)
+	{
+		return Database.getQueryLocator([Select AnnualRevenue from Lead]);
+	}
+
+	//EXECUTE
+	//Use the execute method to do the required processing of each chunk of data
+	//This method is called for each batch/chunk of records that you pass through
+
+	global void execute(Database.BatchableContext bc,List<Lead>lList)
+	{
+		for(Lead l : llist)
+		{
+			l.annualRevenue = 2000000;
+		}
+		update llist;
+	}
+
+	//FINISH
+	//This method is called after all batches are processed
+	//Generally we write the code inside it to send a confirmation email or execute any post processing operations
+
+	global void finish(Database.BatchableContext bc)
+	{
+		//To send an email using code, use below snippet
+		Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+		String[] toAddress = new String[]{'kalawatg@gmail.com'};
+		mail.setToAddresses(toAddress);
+		mail.setSubject('Batch Job Completed');
+		mail.setPlainTextBody('Batch process is completed');
+		Messaging.sendEmail(new Messaging.SingleEmailMessage[]{mail});
+	}
+}
+
+
+
+
+*** To execute an APEX Batch class, Type the Below Code:
+LeadUpdateBatch lub = new LeadUpdateBatch();
+Database.executeBatch(lub);
