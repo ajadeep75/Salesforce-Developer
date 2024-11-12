@@ -1,0 +1,66 @@
+//DML Statements are used to modify existing records or create new records inside the database with the help of APEX program.
+
+//DML Standalone Statements
+	1. Insert
+	2. Update
+	3. Upsert
+	4. Delete
+	5. Undelete
+	6. Merge
+
+
+1. Insert
+
+List<Account>accList = new List<Account>();
+for(integer i=1;i<=20;i++){
+	Account a = new Account(Name = 'Test Account' +i);
+	accList.add(a);
+}
+insert accList;
+
+
+2. Update
+
+List<Account>accList = [Select Name from Account where CreatedDate = TODAY];
+for(Account a : accList){
+	a.Name = a.Name + 'Updated';
+}
+update accList;
+
+
+3. Upsert
+
+List<Account>accList = [Select Name from Account where CreatedDate = TODAY];
+for(Account a1 : accList){
+	a1.NumberOfEmployees = 100;
+}
+for(integer i=1;i<=10;i++){
+	Account a = new Account(Name = 'Upsert Account' +i);
+	accList.add(a);
+}
+upsert accList;
+
+
+4. Delete
+
+delete accList;
+
+
+5. Undelete
+undelete accList;
+
+
+6. Merge
+
+List<Account>accList = [Select name from Account where name like 'Merg%' Limit 3];
+Account a = accList[0];
+Account b = accList[1];
+Account c = accList[2];
+
+List<Account>mergeList = new List<Account>();
+mergeList.add(accList[1]);
+mergeList.add(accList[2]);
+
+// merge a b;          // for 2 records
+// merge a mergeList;  // for 3 records
+// merge a c.id        // with ID
