@@ -1,0 +1,48 @@
+-----------------------------------------------------APEX TRIGGERS CONCEPTS------------------------------------------------------
+
+-> Trigger is an Apex code that executes before or after changes occur to salesforce records. These changes includes operations like Insert,
+Update, Delete, Merge, Upsert and Undelete.
+
+** When to use triggers:
+
+1. An Apex trigger is a stored Apex procedure that is called whenever a record is inserted, updated, deleted or undeleted. If any change happens to a single or multiple records, the Apex Trigger created on that object will be fired.
+
+2. For example, we can have a trigger run:
+	a. Before an object's record is inserted into the database.
+	b. After a record has been deleted.
+	c. Even after a record is restored back from recycled bin.
+
+3. Use triggers to perform tasks that can't be done using a point & click tool in Salesforce. If the task is possible using point & click
+tools then always prefer doing it from them.
+
+4. Triggers are active by-default when created and salesforce automatically fires actives triggers when specified database event occurs.
+
+
+-----------------------------------------------------TYPES OF TRIGGERS-------------------------------------------------------------
+
+1. Before Triggers:
+
+They are used to update/modify or validate records before they are saved to database.
+
+2. After Triggers:
+
+These are used to access field values that are set by the system like recordId, lastModifiedDate field. Also, we can make changes to other
+records in the after trigger but not on the records which initiated/triggered the execution of after trigger because the records that fire
+after trigger are read-only
+
+
+----------------------------------------------------SYNTAX & TRIGGER EVENTS-------------------------------------------------------------
+
+trigger TriggerName on ObjectName(trigger_events)
+{
+	//code_block
+}
+
+where trigger_events can be a comma-separated list of one or more of the following events:
+	-> Before insert
+	-> Before update
+	-> Before delete
+	-> After insert
+	-> After update
+	-> After delete
+	-> After undelete
