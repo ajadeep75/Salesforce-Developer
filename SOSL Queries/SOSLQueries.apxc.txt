@@ -1,0 +1,63 @@
+//SOSL stands for Salesforce Object Search Language
+
+//SOSL Syntax
+	//In Apex
+	Find 'What' IN [What type] Returning [Where]
+	//In Query Editor
+	Find {What} IN [What type] Returning [Where]
+
+Ex: Find John Returning Account,Contact
+
+//What type (Search Group)?
+Find {John} in Name Fields
+Find {John} in Email Fields
+Find {John} in All Fields (Default)
+
+
+//Return which fields?
+Find {John} Returning Account(Name,Phone), Contact(lastName), Student__c(Name,Student_Name__c)
+
+
+//SOSL in Apex needs to have the entities/objects specified
+List<List<sObject>>l1 = [Find 'Volkswagen' Returning Account,Contact];
+
+//Return specified fields
+List<List<sObject>>l2 = [Find 'Volkswagen' Returning Account(Name,NumberOfEmployees)];
+
+
+//How to access records in Apex returned by SOSL
+List<Account>accList = l2[0];
+List<Contact>conList = l2[1];
+
+for(Account a : accList){
+	System.debug(a.Name);
+	System.debug(a.NumberOfEmployees);
+}
+
+for(Contact c : conList){
+	System.debug(a.Name);
+	System.debug(a.Phone);
+}
+
+
+------------------------------------------------SEARCH GROUPS IN SOSL--------------------------------------------------
+-> Search in Specified fields (search group)
+	1. All Fields (By default)
+	2. Name Fields
+	3. Email Fields
+	4. Phone Fields
+	5. Sidebar Fields
+
+-------------------------------------------------WILDCARDS IN SOSL------------------------------------------------------
+1. * => 0 or N number of characters
+2. ? => A single character
+--------------------------------------------------CLAUSES IN SOSL-------------------------------------------------------
+1. WHERE CLAUSE
+2. ORDER BY CLAUSE
+3. LIMIT CLAUSE
+---------------------------------------------------SOSL KEYWORDS--------------------------------------------------------
+1. AND
+2. OR
+---------------------------------------------------DYNAMIC SOSL---------------------------------------------------------
+String s = 'Find\'John\' RETURNING Account, Contact';
+List<List<sObject>> sList = Search.query(s);
