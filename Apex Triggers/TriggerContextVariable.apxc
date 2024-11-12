@@ -1,0 +1,52 @@
+--------------------------------------------------TRIGGER CONTEXT VARIABLE-------------------------------------------------------------
+Context variables allow developers to access run-time context of any trigger.
+These context variables are contained in System.Trigger class
+
+-> Types of context variable:
+  1. Trigger.new:
+    This variable returns a list of the new versions of the sObject records
+
+    trigger ApexTrigger on Account(before insert){
+      for(Account acc : Trigger.new){
+        acc.NumberOfEmployees = 100;
+      }
+    }
+
+  Note: This sObject is only available in insert, update and undelete triggers and records can only be modified in before triggers.
+
+
+  2. Trigger.old:
+    This variable returns a list of old version of sObject records. This list is only available in update and delete triggers.
+
+    for(Opportunity oldOpp : Trigger.old){
+      for(Opportunity newOpp : Trigger.new){
+        if(oldOpp.id == newOpp.id && oldOpp.Amount != newOpp.Amount){
+          newOpp.Error('Amount can't be changed');
+        }
+      }
+    }
+
+
+  3. Trigger.oldMap:
+      Map<Id,Opportunity>oMap = new Map<Id,Opportunity>();
+      oMap = trigger.oldMap;
+      for(Opportunity newOpp : Trigger.new){
+        Opportunity oldOpp = new Opportunity();
+        oldOpp = oMap.get(newOpp.Id);
+        if(newOpp.Amount != oldOpp.Amount){
+          newOpp.addError('Amount can't be changed');
+        }
+      }
+
+  4. Trigger.newMap:
+      //Only available in beforeUpdate, afterUpdate, afterInsert, afterUndelete Triggers.
+      Map<Id,Account>nMap = new Map<Id,Account>();
+      nMap = trigger.newMap;
+
+      List<Contact>cList = [Select lastName, AccountId, MailingCity from Contact where AcountId in : nMap.keySet()];
+      for(Contact c : cList){
+        Account a = nMap.get(c.AccountId);
+        c.MailingCity = a.BillingState;
+      }
+      update cList;
+  
