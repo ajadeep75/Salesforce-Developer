@@ -1,0 +1,3 @@
+<apex:pageMessage severity="ERROR" strength="2">
+  Hello, I'm just a simple message
+</apex:pageMessage>
