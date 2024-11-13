@@ -1,0 +1,21 @@
+<apex:page standardController="FirstController">
+  <apex:form>
+    <apex:pageBlock title="Account, Contact & Opportunity Create Page">
+      <apex:pageBlockSection title="Account Information">
+        <apex:inputText value="{!accName}" label="Account Name" required="true" />
+        <apex:inputText value="{!accEmployees}" label="Number of Employees" />
+      </apex:pageBlockSection>
+      <apex:pageBlockSection title="Contact Information">
+        <apex:inputText value="{!conName}" label="Contact Name" required="true" />
+        <apex:inputText value="{!conEmail}" label="Email of Contact" />
+      </apex:pageBlockSection>
+      <apex:pageBlockSection title="Opportunity Information">
+        <apex:inputText value="{!oppName}" label="Opportunity Name" required="true" />
+        <apex:inputText value="{!oppAmount}" label="Amount of Opportunity" />
+      </apex:pageBlockSection>
+      <apex:pageBlockButtons location="BOTTOM">
+        <apex:commandButton action="{!save}" value="save the record"/>
+      </apex:pageBlockButtons>
+    </apex:pageBlock>
+  </apex:form>
+</apex:page>
