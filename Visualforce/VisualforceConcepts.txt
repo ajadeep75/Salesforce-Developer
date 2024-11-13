@@ -1,0 +1,24 @@
+----------------------------------------------------VISUALFORCE CONCEPTS------------------------------------------------------------
+
+-> Visualforce is a framework that allows developers to build sophisticated custom user interfaces that can be hosted natively on the
+force.com platform
+
+-> The visualforce framework includes a tag based markup language similar to HTML and a set of server-side standard controllers that make
+basic database operations such as queries and saves very simple to perform
+
+-> A visualforce pays definition consists of two primary elements
+	1.Visualforce Markup
+	2.Visualforce Controller
+
+
+1.Visualforce Markup:
+
+It consists of visualforce tags, HTML, Javascript or any other web enabled code embedded within a single <apex:page> tag. The markup
+defines the UI Components that should be included on the page and the way they should appear.
+
+
+2.Visualforce Controller:
+
+It is a set of instructions that specify what happens when a user interacts with the components specified in the associated visualforce
+markup such as when a user clicks a button or link. Controllers also provide access to data that should be displayed in a page and can 
+modify component behavior.
