@@ -1,0 +1,6 @@
+<template iterator:it = {contacts}>
+	<li key = {it.value.id}>
+		<div if:true = {it.first} class="list-first"></div>
+		{it.value.name},{it.value.title}
+	</li>
+</template>
