@@ -1,0 +1,9 @@
+1. lightning-record-form
+2. lightning-record-edit-form
+3. lightning-record-view-form-components
+
+Note: These components provide a form layout and handle record create, read and update changes without requiring Apex code.
+
+-> lightning-record-edit-form : Displays an editable form.
+-> lightning-record-view-form : Displays a read-only form.
+-> lightning-record-form : Supports edit, view & read-only modes.
