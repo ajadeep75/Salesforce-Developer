@@ -1,0 +1,19 @@
+---------------------------------------------------Toast Notifications in LWC---------------------------------------------------------
+
+import {LightningElement} from 'lwc';
+import {ShowToastEvent} from 'lightning/platformShowToastEvent';
+
+export default class ShowToastEventExample extends LightningElement{
+  handleSuccess()
+  {
+    const showSuccess = new ShowToastEvent({
+        title:'Success!!',
+        message:'This is success message',
+        variant:'Success',
+    });
+    this.dispatchEvent(showSuccess);
+  }
+}
+
+
+*Other variants - error, warning, info
